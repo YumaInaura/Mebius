@@ -95,7 +95,7 @@ my($script_mode,$gold_url,$title) = &init();
 if($main::submode1 eq ""){ &index(); }
 elsif($main::submode1 eq "cancel_newwait"){ &cancel_newwait(); }
 elsif($main::submode1 eq "monster"){ &monster(); }
-else{ &main::error("ページが存在しません。"); }
+else{ &main::error("ページが存在しません。[G1]"); }
 
 exit;
 

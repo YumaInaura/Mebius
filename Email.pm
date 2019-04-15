@@ -241,8 +241,10 @@ $from = MIME::mimeencode2("メビウスリング <$email>");
 
 $body = "To: $address\n";
 $body .= "From: $from\n";
+
 	# From アドレス
-	if($from_adddress){ $body .= "Cc: $from_adddress\n"; }
+#	if($from_adddress){ $body .= "Cc: $from_adddress\n"; }
+
 $body .= "Subject: $subject2\n";
 $body .= "MIME-Version: 1.0\n";
 $body .= "Content-type: text/plain; charset=iso-2022-jp\n";

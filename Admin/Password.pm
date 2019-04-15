@@ -12,7 +12,7 @@ my($my_admin) = Mebius::my_admin();
 my($param) = Mebius::query_single_param();
 
 	# マスターのみが使えるように
-	if(!$my_admin->{'master_flag'}){ main::error("ページが存在しません。"); }
+	if(!$my_admin->{'master_flag'}){ main::error("ページが存在しません。[OMS]"); }
 
 # クエリから暗号化
 my($encpass,$salt) = encrypt_for_admin($param->{'pass'}) if($param->{'pass'});

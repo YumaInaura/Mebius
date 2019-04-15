@@ -3196,7 +3196,7 @@ Mebius::Admin::ridge_admin_flag();
 	if(!Mebius::alocal_judge() && $ENV{'REMOTE_USER'} eq "" && $ENV{'REDIRECT_REMOTE_USER'}){ main::error("第一暗証がかかっていません。"); }
 
 	# SSLでない場合はエラーに
-	if(!Mebius::alocal_judge() && $ENV{'SERVER_PORT'} ne "443"){ main::error("SSLでアクセスしてください。"); }
+#	if(!Mebius::alocal_judge() && $ENV{'SERVER_PORT'} ne "443"){ main::error("SSLでアクセスしてください。"); }
 
 my($basic_init) = Mebius::basic_init();
 
@@ -3604,12 +3604,13 @@ sub error {
 
 my $error = shift;
 g_shift_jis($error);
+my($package, $file, $line) = caller; 
 
 my $print .= <<"EOM";
 <div align="center"><div style="border:1px #000 solid;padding:20px;margin:15% auto;width:60%;">
 <strong style="color:#f00;" class="line-height-large">エラー： <br$main::xclose>$error</strong><br><br>
 $in{'comment'}
-<a href="JavaScript:history.go(-1)">前の画面に戻る</a><br><br>
+w<a href="JavaScript:history.go(-1)">前の画面に戻る</a><br><br>
 <a href="$script">掲示板に戻る</a><br><br>
 <a href="$home">ＴＯＰページに戻る</a></span>
 $pr2

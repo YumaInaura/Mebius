@@ -33,21 +33,21 @@ my $column = {
 
 number => { PRIMARY => 1 } ,
 
-content_number => { } , 
-content_title => { } , 
+content_number => { } ,
+content_title => { } ,
 
-text => { text => 1 } , 
+text => { text => 1 } ,
 human => { } ,
 split_number => { int => 1 } ,
 
-order_number => { int => 1 } , 
+order_number => { int => 1 } ,
 
 good_num => { int => 1 } ,
 good_accounts => { text => 1 } ,
 good_cnumbers => { text => 1 } ,
 good_addrs => { text => 1 } ,
 
-access_count => { int => 1  } , 
+access_count => { int => 1  } ,
 access_addrs => { text => 1 }  ,
 access_cnumbers => { text => 1 }  ,
 
@@ -55,11 +55,11 @@ deleted_flag => { int => 1 } ,
 penalty_flag => { int => 1 } ,
 
 account => { } ,
-addr => { } , 
-host => { } ,  
+addr => { } ,
+host => { } ,
 cnumber => { } ,
-mobile_uid => { } , 
-user_id => {} , 
+mobile_uid => { } ,
+user_id => {} ,
 
 handle => { } ,
 
@@ -235,7 +235,7 @@ my($param) = Mebius::query_single_param();
 my($print,@BCL,$message);
 
 my $saying_number = $param->{'q'} || $param->{'saying_number'};
-my $saying_data = $saying->fetchrow_main_table({ number => $saying_number })->[0] || $self->error("ページが存在しません。");
+my $saying_data = $saying->fetchrow_main_table({ number => $saying_number })->[0] || $self->error("ページが存在しません。[S1]");
 my $content_data = $basic->saying_data_to_content_data($saying_data);
 
 $message = $self->deleted_judge($saying_data) || $self->deleted_judge($content_data);
@@ -255,7 +255,8 @@ my $form_id = "saying_saying_control_$saying_data->{'number'}";
 # FORM START
 $print .= $self->data_to_line($saying_data,{ form_id => $form_id , NotViewTitle => 1 });
 $print .= $debug->escape_error_checkbox();
-
+
+
 # 解説エリア
 my $review_data_group = $review->fetchrow_main_table({ saying_number => $saying_data->{'number'} },{ ORDER_BY => ["good_num DESC"] } );
 
@@ -298,7 +299,7 @@ exit;
 
 
 #-----------------------------------------------------------
-# 
+#
 #-----------------------------------------------------------
 sub data_group_to_line{
 
@@ -353,7 +354,7 @@ $print;
 
 
 #-----------------------------------------------------------
-# 
+#
 #-----------------------------------------------------------
 sub data_to_list{
 
@@ -400,7 +401,7 @@ $print;
 
 
 #-----------------------------------------------------------
-# 
+#
 #-----------------------------------------------------------
 sub data_to_line{
 
@@ -506,7 +507,8 @@ $form .= qq(</div>);
 $form .= qq(</div>);
 
 $form .= $html->close_tag("form");
-$form .= $javascript->count_character_num();
+
+$form .= $javascript->count_character_num();
 
 $form;
 
@@ -514,7 +516,7 @@ $form;
 
 
 #-----------------------------------------------------------
-# 
+#
 #-----------------------------------------------------------
 sub edit_form_view{
 
@@ -581,7 +583,7 @@ $form;
 
 
 #-----------------------------------------------------------
-# 
+#
 #-----------------------------------------------------------
 sub sitemap_view{
 
@@ -611,7 +613,7 @@ exit;
 }
 
 #-----------------------------------------------------------
-# 
+#
 #-----------------------------------------------------------
 sub url{
 
@@ -641,7 +643,7 @@ $url;
 
 
 #-----------------------------------------------------------
-# 
+#
 #-----------------------------------------------------------
 sub data_to_url{
 
@@ -656,7 +658,7 @@ $saying_url;
 
 
 #-----------------------------------------------------------
-# 
+#
 #-----------------------------------------------------------
 sub create_border_num{
 my $self = shift;
@@ -665,7 +667,7 @@ $init->{'saying_max_create_num'};
 }
 
 #-----------------------------------------------------------
-# 
+#
 #-----------------------------------------------------------
 sub adjust_report_data{
 
@@ -703,14 +705,14 @@ Mebius->error(@_);
 }
 
 #-----------------------------------------------------------
-# 
+#
 #-----------------------------------------------------------
 sub limited_package_name{
 "saying";
 }
 
 #-----------------------------------------------------------
-# 
+#
 #-----------------------------------------------------------
 sub japanese_label_name{
 "名言";

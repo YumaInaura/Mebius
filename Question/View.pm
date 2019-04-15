@@ -173,7 +173,7 @@ $line;
 }
 
 #-----------------------------------------------------------
-# 自分の質問 
+# 自分の質問
 #-----------------------------------------------------------
 sub log_question_view{
 
@@ -247,7 +247,8 @@ my $title = "${year}年${month}月のくえすちょん";
 
 $self->print_html($line,{ Title => $title , h1 => $title , BCL => [$title] });
 
-}
+}
+
 
 #-----------------------------------------------------------
 # アクセス回数の多い質問
@@ -314,7 +315,7 @@ $line;
 
 
 #-----------------------------------------------------------
-# 最近の質問 
+# 最近の質問
 #-----------------------------------------------------------
 sub recently_question_view{
 
@@ -348,7 +349,7 @@ $line;
 
 }
 #-----------------------------------------------------------
-# 最近の質問 
+# 最近の質問
 #-----------------------------------------------------------
 sub no_answer_question_view{
 
@@ -450,7 +451,7 @@ $line;
 }
 
 #-----------------------------------------------------------
-# 自分の質問 
+# 自分の質問
 #-----------------------------------------------------------
 sub my_question_view{
 
@@ -497,7 +498,7 @@ my($my_account) = Mebius::my_account();
 my($line);
 
 	if(!Mebius->common_admin_judge()){
-		Mebius->error("ページが存在しません。");
+		Mebius->error("ページが存在しません。[Q1]");
 	}
 
 my $title = "削除済み";
@@ -649,7 +650,7 @@ my($subject_fillter_error) = Mebius::Fillter::fillter_and_error($post_data->{'te
 
 #my $question_body = $post_data->{'text'};
 #$question_body =~ s/[\r\n]/<br>/g;
-#$print .= qq($question_body); 
+#$print .= qq($question_body);
 
 # 広告フィルタ
 my $fillter_flag = Mebius::Fillter::basic($post_data->{'text'},$post_data->{'text'});
@@ -854,7 +855,7 @@ my @data = @{$adjusted_comment_data_group};
 					} else {
 						$good_answer_flag = 1;
 					}
-			} 
+			}
 
 			# 特定のレスだけ表示する場合
 			if($use->{'limited_view_response'} && !$use->{'limited_view_response'}->{$data->{'number'}}){
@@ -942,7 +943,7 @@ my $form = $self->form_parts($relay_use);
 				$style .= "margin-bottom:1em;"; # 広告 誤クリック防止用の のスペース
 			}
 		$form = $html->tag("div",$form,{ NotEscape => 1 , class => "float-left" , style => $style });
-	} 
+	}
 
 $form;
 
@@ -1102,7 +1103,7 @@ my $report_dbi = $report->fetchrow_main_table({ content_type => "question" , ans
 		my $post_number = $report_data->{'targetA'};
 		my $response_number = $report_data->{'targetB'};
 
-		my $post_data = $post->fetchrow_main_table({ number => $post_number })->[0]; # 
+		my $post_data = $post->fetchrow_main_table({ number => $post_number })->[0]; #
 		$chain_data{$post_number}{'post'}{'data'} = $post_data;
 
 			if(!$response_number){
@@ -1144,7 +1145,7 @@ my $num = keys %chain_data;
 
 	}
 
-#$print .= qq(<div class="float-left report_per_res" style="width:48%;">);	
+#$print .= qq(<div class="float-left report_per_res" style="width:48%;">);
 #$print .= qq(</div>);
 #$print .= qq(<div class="clear"></div>);
 

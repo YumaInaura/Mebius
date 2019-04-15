@@ -52,7 +52,8 @@ sub Bank{
 	elsif($main::in{'type'} eq "charity"){ &BankCharity(); }
 	elsif($main::in{'type'} eq "lot"){ &BankLot(); }
 	elsif($main::in{'type'} eq ""){ &ViewBank(); }
-	else{ main::error("ページが存在しません。"); }
+
+	else{ main::error("ページが存在しません。[ADBK]"); }
 }
 
 

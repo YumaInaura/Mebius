@@ -86,7 +86,7 @@ my($script_mode,$gold_url,$title) = &init();
 # モード振り分け
 if($main::mode eq ""){ &index(); }
 elsif($main::mode eq "cancel_newwait"){ &cancel_newwait(); }
-else{ &main::error("ページが存在しません。"); }
+else{ &main::error("ページが存在しません。[G1]"); }
 
 exit;
 

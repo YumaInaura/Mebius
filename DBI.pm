@@ -29,7 +29,7 @@ my $self = shift;
 
 
 #-----------------------------------------------------------
-# 
+#
 #-----------------------------------------------------------
 sub set{
 my $self = shift;
@@ -38,7 +38,7 @@ $self->set_database(@_);
 
 
 #-----------------------------------------------------------
-# 
+#
 #-----------------------------------------------------------
 sub set_database{
 
@@ -68,18 +68,11 @@ my $password = "Zettaini-subarasii-7";
 			}
 	}
 
-	# メインデータベース
-	if($ENV{'SCRIPT_ADDR'} eq "133.242.12.79" || $ENV{'SERVER_ADDR'} eq "133.242.12.79" || $ENV{'SERVER_ADDR'} eq "" || Mebius::alocal_judge()){
-		$dbh = DBI->connect("DBI:mysql:${database_name}", 'admin', $password,\%option);
-	} else {
-		$dbh = DBI->connect("DBI:mysql:${database_name}:10.0.0.2", 'admin', \%option);
-	}
+# メインデータベース
+$dbh = DBI->connect("DBI:mysql:${database_name}", 'admin', $password,\%option);
 
 $dbh->{'ShowErrorStatement'} = 1;
-#$dbh->{'PrintWarn'} = 0;
-#$dbh->{'PrintError'} = 0;
 
-#$dbh->{RaiseError} = 1;
 
 $dbh;
 
@@ -98,7 +91,7 @@ my($exists,$not_exists);
 	# テーブル名の汚染チェック
 	if($self->table_name_format_error($table_name)){
 		die;
-	}	
+	}
 
 my(undef,$result) = $self->fetchrow("SELECT * FROM `$table_name` LIMIT 0,1;");
 
@@ -237,7 +230,7 @@ $dbi_query_do .= " ($formated_query)" if($formated_query);
 }
 
 #-----------------------------------------------------------
-# 
+#
 #-----------------------------------------------------------
 sub hash_or_array_to_where{
 
@@ -293,7 +286,7 @@ $mark ||= "=";
 
 		$target = join "," , @query;
 		$target = "( $target )";
-	
+
 
 	} elsif($value eq "" && $mark eq "="){
 
@@ -500,7 +493,7 @@ $sth,$result;
 }
 
 #-----------------------------------------------------------
-# 
+#
 #-----------------------------------------------------------
 sub escape_and_quote{
 
@@ -539,7 +532,7 @@ $query;
 
 
 #-----------------------------------------------------------
-# 
+#
 #-----------------------------------------------------------
 sub delete_record{
 
@@ -640,7 +633,7 @@ my($dbh) = $self->connect($database_name);
 
 my $backup_table_name = $table_name."_backup";
 
-# ファイルテーブルを作成、カラムをコピー	
+# ファイルテーブルを作成、カラムをコピー
 $dbh->do("CREATE TABLE IF NOT EXISTS $backup_table_name LIKE $table_name;");
 
 # メモリテーブルをファイルテーブルに変更
@@ -998,7 +991,7 @@ my($dbh) = $self->connect($database_name);
 			if($column_num != $column_hit){
 				#die "must column num is $column_num . but here is $column_hit. ( round $i_hash )";
 			}
-	
+
 		push @set_values , \@values;
 
 	}
@@ -1162,7 +1155,7 @@ my $data = $self->fetchrow(\%fetch,{ table_name => $table_name , Bind => 1 })->[
 }
 
 #-----------------------------------------------------------
-# ファイルテーブルとメモリテーブルの両方を update_or_insert 
+# ファイルテーブルとメモリテーブルの両方を update_or_insert
 #-----------------------------------------------------------
 sub update_or_insert_with_memory_table{
 
@@ -1532,7 +1525,7 @@ $primary_key;
 
 
 #-----------------------------------------------------------
-# 
+#
 #-----------------------------------------------------------
 sub column_name_to_index_name{
 

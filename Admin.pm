@@ -139,7 +139,7 @@ $self .= qq( <a href="http://mb2.jp/_main/admins.html">管理者一覧</a>);
 #$self .= qq( <a href="https://aurasoul.mb2.jp/jak/chat/comchat.cgi">チャット</a>);
 $self .= qq( <a href="$basic_init->{'admin_main_url'}?mode=mydata">マイ設定</a>);
 
-$self .= qq( <a href="$basic_init->{'admin_main_url'}?mode=allregistcheck">投稿判定</a>(<a href="$basic_init->{'admin_main_url'}?mode=allregistcheck&amp;select=$main::todayf">★</a>) ); 
+$self .= qq( <a href="$basic_init->{'admin_main_url'}?mode=allregistcheck">投稿判定</a>(<a href="$basic_init->{'admin_main_url'}?mode=allregistcheck&amp;select=$main::todayf">★</a>) );
 
 	if($my_admin->{'master_flag'}){
 		$self .= qq(<a href="$basic_init->{'guide_url'}?action=LOGIN">ガイド管理</a>);
@@ -257,7 +257,7 @@ $admy{'second_id'} = $admy{'file'};
 
 		# 局所化
 		my($allow_isp_flag,$allow_isp);
-	
+
 		# ホスト名から自分のISPを抽出
 		my($isp) = Mebius::Isp(undef,$host);
 
@@ -269,20 +269,20 @@ $admy{'second_id'} = $admy{'file'};
 			}
 
 
-			# ISPが不正な場合
-			if(!$allow_isp_flag){
+			# # ISPが不正な場合
+			# if(!$allow_isp_flag){
 
-				# 警告メール送信
-				Mebius::Admin::AlertMail(undef,"不正なISP ( $isp ) ",undef,%admy);
+			# 	# 警告メール送信
+			# 	Mebius::Admin::AlertMail(undef,"不正なISP ( $isp ) ",undef,%admy);
 
-				# ログを記録
-				Mebius::AccessLog("Not-unlink-file","Admin-bad-host","管理者 $admy{'id'} のアクセスで、ISPが合致しませんでした。 攻撃者のホスト： $host");
+			# 	# ログを記録
+			# 	Mebius::AccessLog("Not-unlink-file","Admin-bad-host","管理者 $admy{'id'} のアクセスで、ISPが合致しませんでした。 攻撃者のホスト： $host");
 
-				# エラー表示
-					if(!Mebius::alocal_judge()){
-						main::error("ログイン出来ません。");
-					}
-			}
+			# 	# エラー表示
+			# 		if(!Mebius::alocal_judge()){
+			# 			main::error("ログイン出来ません。");
+			# 		}
+			# }
 	}
 
 		# ●自分のアクセスで、パスワードが合致した場合
@@ -549,7 +549,7 @@ chomp(my $top1 = <$file_handler>);
 
 		# ラウンドカウンタ
 		$i++;
-		
+
 		# この行を分解
 		chomp;
 		my($key2) = split(/<>/);
@@ -742,7 +742,7 @@ my $authtime = 24*60*60;
 				$admy{'leader_flag'} = 1;
 			}
 
-	
+
 			# マスターは、管理ランクを自由に変更して確認できるように
 			if($admy{'master_flag'} && $param->{'admin_rank'} =~ /^(\d+)$/){
 				$main::admy_rank = $main::my_rank = $admy{'rank'} = $param->{'admin_rank'};

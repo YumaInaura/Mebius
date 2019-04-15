@@ -23,7 +23,7 @@ bless {} , $self;
 
 
 #-----------------------------------------------------------
-# 
+#
 #-----------------------------------------------------------
 sub basic_object{
 
@@ -36,7 +36,7 @@ $object;
 
 
 #-----------------------------------------------------------
-# 
+#
 #-----------------------------------------------------------
 sub useful_account{
 
@@ -74,7 +74,7 @@ console "$task_num tasks found.";
 		#my $profile_html = $basic->get($profile_url,$email);
 
 		my $flag = $self->send($task_data);
-		
+
 		#last;
 
 	}
@@ -88,7 +88,7 @@ exit;
 
 
 #-----------------------------------------------------------
-# 
+#
 #-----------------------------------------------------------
 sub send{
 
@@ -125,12 +125,16 @@ $preview{'original_message_id'} = "";
 $preview{'reply_message_id'} = "";
 $preview{'id'} = $mixi_id;
 
-#print Dumper \%post; 
+#print Dumper \%post;
 
 my $preview_url = "http://mixi.jp/send_message.pl";
 my $preview_html = $basic->post($preview_url,$email,\%preview,{ referer => $message_url });
 
-	if($preview_html =~ m!<p>以下の内容でメッセージを送信します!){
+	if($preview_html =~ m!メッセージ受信範囲設定によりメッセージを送ることが!){
+		$basic->failed_log($email,"This user block catch message.",$preview_html);
+		$task->update_main_table({ target => $task_data->{'target'} , done_flag => 1 });
+		exit;
+	} elsif($preview_html =~ m!<p>以下の内容でメッセージを送信します!){
 		$basic->try_log($email,"Preview message.",$preview_html);
 	} else {
 		$basic->failed_log($email,"Can not preview message.",$preview_html);
@@ -162,7 +166,7 @@ my $post_html = $basic->post($post_url,$email,\%post,{ referer => $preview_url }
 	} else {
 		$basic->failed_log($email,"Can not send message.",$post_html);
 	}
- 
+
 }
 
 
