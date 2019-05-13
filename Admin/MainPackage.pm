@@ -3295,7 +3295,7 @@ $host = $ENV{'REMOTE_HOST'};
 
 	# ホスト判定
 	if (($host eq "" || $host eq "$addr")) { $host = gethostbyaddr(pack("C4", split(/\./, $adaddr)), 2); }
-	if(length($host) < 6){ main::error("ログイン出来ません。"); }
+	# if(length($host) < 6){ main::error("ログイン出来ません。"); }
 
 	# クッキー取得
 	($cnam,$ceml,$cpwd,$curl,$cmvw,$csort,$delce,$csnslink) = get_cookie_admin();
